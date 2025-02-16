@@ -1,11 +1,12 @@
 #1. Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias de cada letra en la cadena. Los espacios no deben ser considerados
+cadena = "Hola me llamo Roberto y esto es una prueba hecha para el ejercicio de contar letras"
 
 """Funcion para contar letras
 Args: string de texto que introducira el usuario
 Returns: imprime por pantalla las letras y el numero de veces que se repiten.
 Se crea un diccionario vacío. Después se recorre la cadena de texto introducida por el usuario, se pasa a minúsculas y se comprueba si es un espacio en blanco. Si es un espacio en blanco se salta a la siguiente iteración. Si la letra ya está en el diccionario se le suma 1 al valor de la clave. Si no está en el diccionario se añade con valor 1. Por último se recorre el diccionario y se imprime por pantalla la letra y el número de veces que se repite.
 """
-def contarLetras(cadena=input("Introduce una cadena de texto: ")):
+def contarLetras(cadena):
     diccionarioLetras = {}
     for letra in cadena:
         letra = letra.lower()
@@ -19,7 +20,7 @@ def contarLetras(cadena=input("Introduce una cadena de texto: ")):
     for letra in diccionarioLetras:
         print(f"La letra {letra} se repite {diccionarioLetras[letra]} veces")
 
-contarLetras()
+contarLetras(cadena)
 
 #2. Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función map()
 
@@ -103,3 +104,168 @@ def factorialRecursivo(numero):
         return numero * factorialRecursivo(numero - 1)
     
 print(factorialRecursivo(numero))
+
+#7. Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función map()
+
+listaTuplas = [(1, 2), (3, 4), (5, 6), (7, 8), (9, 10)]
+
+"""Funcion para convertir una lista de tuplas a una lista de strings
+Args: lista de tuplas
+Returns: lista de strings
+Se usa la función map() para recorrer la lista de tuplas y se convierte cada tupla a un string. Se convierte el objeto map a lista y se imprime por pantalla.
+"""
+def convertirListaTuplas(listaTuplas):
+    listaStrings = list(map(lambda x: str(x), listaTuplas))
+    print(listaStrings)
+
+convertirListaTuplas(listaTuplas)
+
+#8. Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico o intenta dividir por cero, maneja esas excepciones de manera adecuada. Asegúrate de mostrar un mensaje indicando si la división fue exitosa o no.
+
+"""Funcion para dividir dos números
+Args: dos números
+Returns: resultado de la división
+Se pide al usuario que introduzca dos números. Se comprueba si los números introducidos son numéricos. Si no son numéricos se imprime un mensaje de error. Si son numéricos se comprueba si el segundo número es 0. Si es 0 se imprime un mensaje de error. Si no es 0 se divide el primer número entre el segundo número y se imprime por pantalla.
+"""
+
+def dividirNumeros():
+    try:
+        numero1 = float(input("Introduce el primer número: "))
+        numero2 = float(input("Introduce el segundo número: "))
+    except ValueError:
+        print("Debes introducir un número")
+    else:
+        try:
+            resultado = numero1 / numero2
+        except ZeroDivisionError:
+            print("No se puede dividir por 0")
+        else:
+            print(f"El resultado de la división es {resultado}")
+
+dividirNumeros()
+
+# 9. Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista excluyendo ciertas mascotas prohibidas en España. La lista de mascotas a excluir es ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"].Usa la función filter()
+
+listaMascotas = ["Perro", "Gato", "Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso", "Loro", "Pez", "Conejo"]
+
+"""Funcion para excluir mascotas prohibidas en España
+Args: lista de nombres de mascotas
+Returns: lista de nombres de mascotas excluyendo las mascotas prohibidas
+Se crea una lista con las mascotas prohibidas. Se usa la función filter() para recorrer la lista de mascotas y se comprueba si la mascota no está en la lista de mascotas prohibidas. Se convierte el objeto filter a lista y se imprime por pantalla.
+"""
+
+def excluirMascotasProhibidas(listaMascotas):
+    mascotasProhibidas = ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"]
+    listaMascotasFiltrada = list(filter(lambda x: x not in mascotasProhibidas, listaMascotas))
+    print(listaMascotasFiltrada)
+
+excluirMascotasProhibidas(listaMascotas)
+
+#10. Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una excepción personalizada y maneja el error adecuadamente.
+
+listaNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+"""Funcion para calcular el promedio de una lista de números
+Args: lista de números
+Returns: promedio de los números
+Se comprueba si la lista de números está vacía. Si está vacía se lanza una excepción. Si no está vacía se calcula el promedio de los números y se imprime por pantalla.
+"""
+
+def calcularPromedio(listaNumeros):
+    if len(listaNumeros) == 0:
+        print("La lista está vacía")
+    else:
+        promedio = sum(listaNumeros) / len(listaNumeros)
+        print(promedio)
+
+calcularPromedio(listaNumeros)
+
+#11. Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor no numérico o un valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las excepciones adecuadamente.
+
+"""Funcion para comprobar la edad introducida por el usuario
+Args: edad introducida por el usuario
+Returns: mensaje de error si la edad no es válida
+Se pide al usuario que introduzca su edad. Se comprueba si la edad introducida es un número. Si no es un número se imprime un mensaje de error. Si es un número se comprueba si la edad está en el rango de 0 a 120. Si no está en ese rango se imprime un mensaje de error.
+"""
+
+def comprobarEdad():
+    try:
+        edad = int(input("Introduce tu edad: "))
+    except ValueError:
+        print("Debes introducir un número")
+    else:
+        if edad < 0 or edad > 120:
+            print("La edad introducida no es válida")
+
+comprobarEdad()
+
+#12. Genera una función que al recibir una frase devuelva una lista con la longitud de cada palabra. Usa la función map()
+
+frase = "Hola me llamo Roberto y esto es una prueba hecha para el ejercicio de la longitud de palabras"
+
+"""Funcion para calcular la longitud de cada palabra de una frase
+Args: frase
+Returns: lista con la longitud de cada palabra
+Se separa la frase en palabras. Se usa la función map() para recorrer la lista de palabras y se calcula la longitud de cada palabra. Se convierte el objeto map a lista y se imprime por pantalla.
+"""
+
+def longitudPalabras(frase):
+    palabras = frase.split()
+    longitudes = list(map(len, palabras))
+    print(longitudes)
+
+longitudPalabras(frase)
+
+#13. Genera una función la cual, para un conjunto de caracteres, devuelva una lista de tuplas con cada letra en mayúsculas y minúsculas. Las letras no pueden estar repetidas. Usa la función map()
+
+caracteres = "Hola me llamo Roberto y esto es una prueba hecha para el ejercicio de las letras"
+
+"""Funcion para devolver una lista de tuplas con cada letra en mayúsculas y minúsculas
+Args: conjunto de caracteres
+Returns: lista de tuplas con cada letra en mayúsculas y minúsculas
+Se crea un conjunto con los caracteres de la cadena introducida por el usuario, eliminando espacios y duplicados. 
+Se usa la función map() para recorrer el conjunto y se convierte cada letra a una tupla con la letra en mayúsculas y minúsculas. 
+Se convierte el objeto map a lista y se imprime por pantalla.
+"""
+
+def letrasMayusculasMinusculas(caracteres):
+
+    caracteres = set(caracteres.replace(" ", "").lower())
+    listaTuplas = list(map(lambda x: (x.upper(), x), caracteres))
+    print(listaTuplas)
+
+letrasMayusculasMinusculas(caracteres)
+
+#14. Crea una función que retorne las palabras de una lista de palabras que comience con una letra en especifico. Usa la función filter()
+
+listaPalabras = ["hola", "adios", "casa", "coche", "perro", "gato", "raton", "elefante", "caballo", "pajaro"]
+letra = "c"
+
+"""Funcion para devolver las palabras de una lista que comiencen con una letra en específico
+Args: lista de palabras y letra
+Returns: lista de palabras que comienzan con la letra en específico
+Se usa la función filter() para recorrer la lista de palabras y se comprueba si la palabra comienza con la letra en específico.
+Se convierte el objeto filter a lista y se imprime por pantalla.
+"""
+
+def palabrasComienzanLetra(listaPalabras, letra):
+    palabras = list(filter(lambda x: x[0] == letra, listaPalabras))
+    print(palabras)
+
+palabrasComienzanLetra(listaPalabras, letra)
+
+#15. Crea una función lambda que sume 3 a cada número de una lista dada.
+
+listaNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+"""Funcion lambda para sumar 3 a cada número de una lista
+Args: lista de números
+Returns: lista con los números sumados 3
+Se crea una función lambda que suma 3 a cada número de la lista. Se usa la función map() para recorrer la lista de números y se aplica la función lambda.
+Se convierte el objeto map a lista y se imprime por pantalla.
+"""
+
+sumaTres = lambda x: x + 3
+listaSumaTres = list(map(sumaTres, listaNumeros))
+print(listaSumaTres)
+
