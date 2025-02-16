@@ -1,21 +1,11 @@
-# Proyecto: DataProject: Lógica. Katas Python
-
-Realizamos la descargar del fichero pdf con los enunciados y generamos archivo "Katas Python.py" en el que se va a realizar la resolución de los ejercicios.
-
-En este README vamos a proceder a pegar también el enunciado y el código de los ejercicios.
-
-## Enunciados y código
-
-1. Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias de cada letra en la cadena. Los espacios no deben ser considerados
-```python
-cadena = "Hola, me llamo Roberto. Esto es una prueba heca para el ajercicio de contar letras"
+#1. Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias de cada letra en la cadena. Los espacios no deben ser considerados
 
 """Funcion para contar letras
 Args: string de texto que introducira el usuario
 Returns: imprime por pantalla las letras y el numero de veces que se repiten.
 Se crea un diccionario vacío. Después se recorre la cadena de texto introducida por el usuario, se pasa a minúsculas y se comprueba si es un espacio en blanco. Si es un espacio en blanco se salta a la siguiente iteración. Si la letra ya está en el diccionario se le suma 1 al valor de la clave. Si no está en el diccionario se añade con valor 1. Por último se recorre el diccionario y se imprime por pantalla la letra y el número de veces que se repite.
 """
-def contarLetras(cadena):
+def contarLetras(cadena=input("Introduce una cadena de texto: ")):
     diccionarioLetras = {}
     for letra in cadena:
         letra = letra.lower()
@@ -30,10 +20,9 @@ def contarLetras(cadena):
         print(f"La letra {letra} se repite {diccionarioLetras[letra]} veces")
 
 contarLetras()
-```
 
-2. Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función map()
-```python
+#2. Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función map()
+
 listaNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 """Funcion para doblar los valores de una lista
@@ -44,12 +33,9 @@ Se usa la función map() para recorrer la lista de números y se multiplica por 
 def doblarValores(listaNumeros):
     listaDoblada = list(map(lambda x: x * 2, listaNumeros))
     print(listaDoblada)
-
 doblarValores(listaNumeros)
-```
 
-3. Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe devolver una lista con todas las palabras de la lista original que contengan la palabra objetivo.
-```python
+#3. Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe devolver una lista con todas las palabras de la lista original que contengan la palabra objetivo.
 listaPalabras = ["hola", "adios", "casa", "coche", "perro", "gato", "raton", "elefante", "caballo", "pajaro"]
 palabraObjetivo = "coche"
 
@@ -66,10 +52,8 @@ def buscarPalabras(listaPalabras, palabraObjetivo):
     print(listaPalabrasObjetivo)
 
 buscarPalabras(listaPalabras, palabraObjetivo)
-```
 
-4. Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map()
-```python
+#4. Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map()
 """Funcion para calcular la diferencia entre los valores de dos listas
 Args: dos listas de números
 Returns: lista con la diferencia entre los valores de las dos listas
@@ -82,10 +66,8 @@ def diferenciaListas(lista1, lista2):
 lista1 = [1, 2, 3, 4, 5]
 lista2 = [5, 4, 3, 2, 1]
 diferenciaListas(lista1, lista2)
-```
 
-5. Ecribe una función que tome una lista de números como parámetro y un valor opcional nota_aprobado, que por defecto es 5. La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual que nota aprobado. Si es así, el estado será "aprobado", de lo contrario, será "suspenso". La función debe devolver una tupla que contenga la media y el estado.
-```python
+#5. Ecribe una función que tome una lista de números como parámetro y un valor opcional nota_aprobado, que por defecto es 5. La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual que nota aprobado. Si es así, el estado será "aprobado", de lo contrario, será "suspenso". La función debe devolver una tupla que contenga la media y el estado.
 listaNotas = [4, 5, 6, 7, 8, 9, 10]
 notaAprobado = 5
 
@@ -103,10 +85,8 @@ def calcularMedia(listaNotas, notaAprobado=5):
     return media, estado
 
 print(calcularMedia(listaNotas, notaAprobado))
-```
 
-6. Escribe una función que calcule el factorial de un número de manera recursiva.
-````python
+#6. Escribe una función que calcule el factorial de un número de manera recursiva.
 numero = 5
 
 """Funcion para calcular el factorial de un número de manera recursiva
@@ -123,5 +103,3 @@ def factorialRecursivo(numero):
         return numero * factorialRecursivo(numero - 1)
     
 print(factorialRecursivo(numero))
-```
-
