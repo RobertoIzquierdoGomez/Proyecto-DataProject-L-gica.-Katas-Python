@@ -294,3 +294,19 @@ listaSumaTres = list(map(sumaTres, listaNumeros))
 print(listaSumaTres)
 ```
 
+16. Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de todas las palabras que sean más largas que n. Usa la función filter()
+```python
+cadena = "Hola me llamo Roberto y esto es una prueba hecha para el ejercicio de la longitud de palabras"
+
+"""Funcion que toma una cadena de texto y devuelve una lista de palabras de longitud n
+Args: cadena de texto
+Returns: lista con palabras de longitud n
+Se crea una función para transformar la cadena en lista. Después se crea nueva variabl con la lista fitlrada utilizando el método filter. Para útilizar el método filter creamos un lambda que recorre los iterables comparando la longitud de las palabras. Finalmente imprimimos la lista filtrada.
+"""
+def filtarPalabras(cadena, n):
+    lista = list(cadena.split())
+    listaFiltrada = list(filter(lambda x: len(x)>=n, lista))
+    print(listaFiltrada)
+
+filtarPalabras(cadena, 3)
+```
