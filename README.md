@@ -3,6 +3,8 @@
 Realizamos la descargar del fichero pdf con los enunciados y generamos archivo "Katas Python.py" en el que se va a realizar la resolución de los ejercicios.
 
 En este README vamos a proceder a pegar también el enunciado y el código de los ejercicios.
+> [!NOTE]
+> Prueba
 
 ## Enunciados y código
 
@@ -382,6 +384,7 @@ print(listaSumaTres)
 ```
 
 16. Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de todas las palabras que sean más largas que n. Usa la función filter()
+
 ```python
 cadena = "Hola me llamo Roberto y esto es una prueba hecha para el ejercicio de la longitud de palabras"
 
@@ -391,4 +394,103 @@ def filtarPalabras(cadena, n):
     print(listaFiltrada)
 
 filtarPalabras(cadena, 3)
+```
+
+17. Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] corresponde al número quinientos setenta y dos (572). Usa la función  `reduce()`
+
+```python
+from functools import reduce
+
+numeros = [5,7,2]
+
+def concatenar_numeros(lista):
+    """
+    Función que toma una lista de dígitos para devolver el número "concatenado"
+
+    Args:
+        num1 (lista): una lista de enteros
+
+    Returns:
+        numero entero: devuelve un numero entero concatenado de los dígitos de la lista
+    """
+    resultado = reduce(lambda x,y: str(x) + str(y),lista)
+    return resultado
+
+print(concatenar_numeros(numeros))
+```
+
+18. Escribe un programa en Python que cree una lista de diccionarios que contenga información de estudiantes (nombre, edad, calificación) y use la función filter para extraer a los estudiantes con una calificación mayor o igual a 90. Usa la función  `filter()`
+
+```PYTHON
+estudiantes = [ #Creamos lista de diccionarios con los estudiantes
+    {"nombre": "Roberto", "edad": 32, "calificacion": 95},
+    {"nombre": "Francisco", "edad": 35, "calificacion": 20},
+    {"nombre": "Debora", "edad": 20, "calificacion": 90},
+    {"nombre": "Dario", "edad": 24, "calificacion": 80},
+    {"nombre": "Ivan", "edad": 20, "calificacion": 91},
+    {"nombre": "Nicolás", "edad": 26, "calificacion": 80}
+]
+
+def calificacion_mayor_90(estudiante):
+    """
+    Función para filtrar estudiantes con una calificación de más de 90.
+
+    Args:
+        estudiante (diccionario): diccionario de un estudiante que contiene su nombre, edad y calificacion.
+
+    Returns:
+        booleano: devuelve verdadero si la calficación del estudiante es mayor de 90 o falso de lo contrario.
+    """ 
+    return estudiante["calificacion"] > 90
+
+# Filtramos los estudiantes y los almacenamos en una nueva lista
+estudiantes_calificados = list(filter(calificacion_mayor_90,estudiantes))
+
+# Imprimimos la lista de los estudiantes pero solo mostrando el nombre
+print(f'Los estudiantes aprobados son {[e["nombre"] for e in estudiantes_calificados]}')
+```
+
+19. Crea una función  lambda  que filtre los números impares de una lista dada.
+
+```PYTHON
+lista_numeros = [1,2,3,4,5,6,7,8,9]
+
+#Establecemos función lambda para filtrar los numeros impares de otra lista
+impares = lambda lista: [numero for numero in lista if numero % 2 == 1]
+
+print(impares(lista_numeros))
+```
+
+20. Para una lista con elementos tipo integer y string obtén una nueva lista sólo con los valores int. Usa la función `filter()`
+
+```PYTHON
+lista_variada = [1,"2",3,"4",5]
+
+def prueba(elemento):
+    """
+    Función para comprobar si un elemento es del tipo integer
+
+    Args:
+        elemento (integer o string): recogerá un elemento de un array
+
+    Returns:
+        boolean: devuelve verdadero si el elemento es un integer
+    """
+    elemento
+    return type(elemento) == int
+
+print(list(filter(prueba,lista_variada)))
+```
+
+21. Crea una función que calcule el cubo de un número dado mediante una función `lambda`
+
+```PYTHON
+cubo = lambda x: x**3
+print(cubo(2))
+```
+
+22. Dada una lista numérica, obtén el producto total de los valores de dicha lista. Usa la función `reduce()`.
+
+```PYTHON
+
 ```
