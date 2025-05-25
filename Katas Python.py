@@ -291,9 +291,7 @@ def letrasMayusculasMinusculas(caracteres):
         lista de tuplas con cada letra en mayúsculas y minúsculas
     
     Se crea un conjunto con los caracteres de la cadena introducida por el usuario, eliminando espacios y duplicados. 
-
     Se usa la función map() para recorrer el conjunto y se convierte cada letra a una tupla con la letra en mayúsculas y minúsculas.
-
     Se convierte el objeto map a lista y se imprime por pantalla.
     """
     caracteres = set(caracteres.replace(" ", "").lower())
@@ -317,7 +315,6 @@ def palabrasComienzanLetra(listaPalabras, letra):
         lista de palabras que comienzan con la letra en específico
     
     Se usa la función filter() para recorrer la lista de palabras y se comprueba si la palabra comienza con la letra en específico.
-    
     Se convierte el objeto filter a lista y se imprime por pantalla.
     """
     palabras = list(filter(lambda x: x[0] == letra, listaPalabras))
@@ -329,20 +326,19 @@ palabrasComienzanLetra(listaPalabras, letra)
 
 listaNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+sumaTres = lambda x: x + 3
 """
 Funcion lambda para sumar 3 a cada número de una lista
 
 Args:
     lista de números
 Returns:
-    lista con los números sumados 3
+    lista con los números sumados
 
 Se crea una función lambda que suma 3 a cada número de la lista. Se usa la función map() para recorrer la lista de números y se aplica la función lambda.
-
 Se convierte el objeto map a lista y se imprime por pantalla.
 """
 
-sumaTres = lambda x: x + 3
 listaSumaTres = list(map(sumaTres, listaNumeros))
 print(listaSumaTres)
 
@@ -376,10 +372,12 @@ def concatenar_numeros(lista):
     Función que toma una lista de dígitos para devolver el número "concatenado"
 
     Args:
-        num1 (lista): una lista de enteros
+        una lista de enteros
 
     Returns:
-        numero entero: devuelve un numero entero concatenado de los dígitos de la lista
+        devuelve un numero entero concatenado de los dígitos de la lista
+    
+    Crea una función que recibe una lista de números enteros. La lista recorre cada elemento y lo transforma a string concatenandolo con el siguiente número tras transformarlo en string. 
     """
     resultado = reduce(lambda x,y: str(x) + str(y),lista)
     return resultado
@@ -402,10 +400,12 @@ def calificacion_mayor_90(estudiante):
     Función para filtrar estudiantes con una calificación de más de 90.
 
     Args:
-        estudiante (diccionario): diccionario de un estudiante que contiene su nombre, edad y calificacion.
+        diccionario de un estudiante que contiene su nombre, edad y calificacion.
 
     Returns:
-        booleano: devuelve verdadero si la calficación del estudiante es mayor de 90 o falso de lo contrario.
+        devuelve verdadero si la calficación del estudiante es mayor de 90 o falso de lo contrario.
+
+    Crea una función que recibe una lista de diccionarios y comprueba si su calificación es mayor que 90 y devolviendo un valor booleano.    
     """ 
     return estudiante["calificacion"] > 90
 
@@ -433,10 +433,12 @@ def prueba(elemento):
     Función para comprobar si un elemento es del tipo integer
 
     Args:
-        elemento (integer o string): recogerá un elemento de un array
+        recogerá un elemento de un array
 
     Returns:
-        boolean: devuelve verdadero si el elemento es un integer
+        devuelve verdadero si el elemento es un integer
+
+    Función que recibe un parámetro y comprueba si es del tipo integer y devuelve un valor booleano.
     """
     elemento
     return type(elemento) == int
@@ -453,8 +455,311 @@ print(cubo(2))
 lista = [1,2,3,4,5,6]
 
 def producto_total(num1, num2):
+    """
+    Función para multiplicar dos números dados por el usuario.
+
+    Args:
+        primer numero de la función
+        segundo numero de la función
+
+    Returns:
+        Devuelve la multiplicación entre ambos números
+
+    Función que recibe como parámetro dos números y los multiplica entre ellos.
+    """
     return num1 * num2
 
-resultado = reduce(producto_total, lista)
+producto_total_lista = reduce(producto_total, lista)
+print(producto_total_lista)
 
-print(resultado)
+#23. Concatena una lista de palabras. Usa la función reduce().
+
+lista_palabras = ["super", "cali", "fragi","listi","co","espia","lidoso"]
+
+def concatenar_palabras(palabra1, palabra2):
+    """
+    Función para concatenar dos palabras
+
+    Args:
+        palabra1 (string): una palabra
+        palabra2 (string): palabra de 
+
+    Returns:
+        devuelve la concatenación de dos palabras.
+    
+    Función que recibe dos palabras y las concatena entre ellas.
+    """
+    return palabra1 + palabra2
+
+palabra_concatenada = reduce(concatenar_palabras, lista_palabras)
+print(palabra_concatenada)
+
+#24. Calcula la diferencia total en los valores de una lista. Usa la función reduce().
+
+lista_numeros = [20,8,6,4]
+
+def resta_lista(lista):
+    """
+    Función para calcular la diferencia total en los valores de una lista.
+
+    Args:
+        Lista de números
+
+    Returns:
+        Imprime el resultado de restar todos los números de la lista
+
+    Función que recoge una lista y va restando cada elemento. Devuelve el resultado de restar todos los números.
+    """
+    resultado = reduce(lambda x,y: x-y, lista)
+    return print(resultado)
+
+resta_lista(lista_numeros)
+
+#25. Crea una función que cuente el número de caracteres en una cadena de texto dada.
+
+cadena = "Hola me llamo Roberto y esto es una prueba hecha para el ejercicio de contar caracteres"
+
+def longitud_texto(text):
+    """
+    Función que devuelve el número de caracteres de una cadena de texto
+
+    Args:
+        cadena de texto
+
+    Returns:
+        devuelve la longitud de la cadena de texto
+    
+    Funcion que toma como dato una cadena de texto y devuelve su longitud.
+    """
+    return len(text)
+
+print(longitud_texto(cadena))
+
+#26. Crea una función lambda que calcule el resto de la división entre dos números dados.
+
+resto = lambda x,y: x%y
+
+#27. Crea una función que calcule el promedio de una lista de números.
+
+lista_numeros = [9,8,9,7,9,5]
+
+def promedio_numeros(lista):
+    """
+    Función para calcular el promedio de una lista de numeros
+
+    Args:
+        lista de números
+
+    Returns:
+        devuelve la media de una lista de números
+
+    Se almacena en una variable la suma de todos los números de la lista.
+    Se utiliza la función reduce() junto con una función lambda para recorrer la lista recibida en el parametro y calcular su suma.
+    Devolvemos la media realizando la división de la variable suma y la longitud de la lista.
+    """
+    suma = reduce(lambda x,y: x + y, lista)
+    return suma / len(lista)
+
+promedio_numeros(lista_numeros)
+
+#28. Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
+
+lista_numeros = [1,2,3,4,4,5,6,6,7]
+
+def devuelve_primer_duplicado(lista):
+    """
+    Funcion para encontrar primer duplicado de una lista
+
+    Args:
+        lista de un conjunto de datos
+
+    Returns:
+        devuelve el primer duplicado de la lista
+
+    Establecemeos un conjunto de datos vacío.
+    Establecemos un for que recorre los elementos de la lista proporcionada.
+    Comprueba si el elemento de la lista está en el conjunto de datos. 
+    En caso de que sí, devuelve el valor. En caso contrario, lo almacena en el conjunto y sigue iterando en el for.
+    """
+    set_numeros = set()
+    for elemento in lista:
+        if elemento in set_numeros:
+            return print(elemento)
+        else:
+            set_numeros.add(elemento)
+
+devuelve_primer_duplicado(lista_numeros)
+
+#29. Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres  con el carácter '#', excepto los últimos cuatro.
+
+variable = 47032604
+
+def transformar_variable(var):
+    """
+    Esta función recibe una variable (entero, texto, etc.), la convierte en una cadena de texto y enmascara todos sus caracteres con el símbolo '#' excepto los últimos cuatro.
+
+    Args:
+        La variable a enmascarar. Se convertirá a string automáticamente.
+
+    Returns:
+        Una nueva cadena con todos los caracteres enmascarados con '#' excepto los últimos cuatro.
+    
+    Tranformamos la variable a texto y establecemos una nueva varieble de texto vacía
+    Recorremos todos los caracteres del texto.
+    Utilizamos un condicional para comprobar sino son los ultimos 4 carácteres. En tal caso, agregamos '#' a la nueva cadena.
+    Si son los últimos 4 caracteres agregamos el carácter original a la nueva cadena de texto.
+    """
+    texto = str(var)
+    nueva_cadena = ""
+
+    for i in range(len(texto)):
+        if i < len(texto) - 4:
+            nueva_cadena += "#"
+        else:
+            nueva_cadena += texto[i]
+
+    return nueva_cadena
+
+print(transformar_variable(variable))
+
+#30. Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por las mismas letras pero en diferente orden.
+
+palabra1 = "perro"
+palabra2 = "roper"
+
+def es_anagrama(pal1, pal2):
+    """
+    Esta función recibe dos palabras (cadenas de texto) y determina si son anagramas, es decir, si están formadas por las mismas letras con la misma cantidad, aunque estén en distinto orden.
+
+    Args:
+        pal1: Primera palabra a comparar.
+        pal2: Segunda palabra a comparar.
+
+    Returns:
+        True si ambas palabras son anagramas (mismas letras y cantidades), False en caso contrario.
+    
+    Comprobamos si las palabras tienen distinta longitud. Si es así, no pueden ser anagramas.
+    Creamos dos conjuntos con las letras únicas de cada palabra.
+    Inicializamos dos diccionarios para contar cuántas veces aparece cada letra en cada palabra.
+    Recorremos cada palabra y aumentamos el contador correspondiente para cada letra.
+    Finalmente, comparamos ambos diccionarios. Si son iguales, las palabras son anagramas.
+    """
+    if len(pal1) != len(pal2):
+        return False
+    set_palabras1 = set(pal1)
+    set_palabras2 = set(pal2)
+    diccionario1 = dict()
+    diccionario2 = dict()
+
+    for a in set_palabras1:
+        diccionario1[a] = 0
+    for a in set_palabras2:
+        diccionario2[a] = 0
+    
+    for a in pal1:
+        diccionario1[a] += 1
+    for a in pal2:
+        diccionario2[a] += 1
+    return diccionario1 == diccionario2
+
+es_anagrama(palabra1, palabra2)
+
+#31. Crea una función que solicite al usuario ingresar una lista de nombres y luego solicite un nombre para buscar en esa lista. Si el nombre está en la lista, se imprime un mensaje indicando que fue encontrado, de lo contrario, se lanza una excepción.
+
+tamaño_lista = int(input("Indica cuántos nombres vas a añadir"))
+
+def encontrar_nombre(size):
+    """
+    Esta función solicita al usuario una cantidad determinada de nombres, los guarda en una lista y luego le pide ingresar un nombre para buscar. Si el nombre está en la lista, imprime un mensaje; si no está, lanza una excepción indicando que no fue encontrado.
+
+    Args:
+        size: Un número entero que indica cuántos nombres se van a ingresar.
+
+    Returns:
+        No retorna un valor directamente. Imprime un mensaje si encuentra el nombre
+        o lanza una excepción si no lo encuentra.
+
+    Se define una lista vacía para almacenar los nombres.
+    Se recorre un bucle que pide al usuario que ingrese un nombre en cada iteración.
+    Luego, se solicita un nombre adicional para buscarlo dentro de la lista.
+    Si el nombre se encuentra, se imprime un mensaje indicando éxito.
+    Si el nombre no está en la lista, se lanza una excepción con un mensaje de error.
+    """
+    lista = list()
+    for i in range(size):
+        lista.append(input(f"Ingresa el nombre #{i+1}: "))
+    nombre = input("Ingresa un nombre a buscar")
+    if nombre in lista:
+        print("Nombre encontrado")
+    else:
+        raise Exception("Nombre no encontrado")
+
+encontrar_nombre(tamaño_lista)
+
+#32. Crea una función que tome un nombre completo y una lista de empleados, busque el nombre completo en la lista y devuelve el puesto del empleado si está en la lista, de lo contrario, devuelve un mensaje indicando que la persona no trabaja aquí.
+
+lista_empleados = {
+    "Javier Perez": "Analista",
+    "Roberto Izquierdo": "Gerente",
+    "Antonio Garcia": "Analista",
+    "Laura Fernández": "Contadora",
+    "Maria Lopez": "Recursos Humanos",
+    "Luis Ortega": "Desarrollador",
+    "Paula Martinez": "Diseñadora",
+    "Fernando Ruiz": "Soporte Técnico",
+    "Natalia Gomez": "Marketing",
+    "Sergio Ramirez": "Gerente de Proyecto",
+    "Isabel Castro": "Administrativa",
+    "Andres Molina": "Auditor",
+    "Patricia Romero": "Analista de Datos",
+    "Carlos Vazquez": "Ventas",
+    "Elena Sanchez": "Product Manager"
+}
+
+def encontrar_puesto(lista):
+    """
+    Esta función solicita al usuario ingresar el nombre completo de un empleado, busca ese nombre dentro de un diccionario de empleados y devuelve su puesto si se encuentra. Si el nombre no está en el diccionario, se muestra un mensaje indicando que la persona no trabaja en la empresa.
+
+    Args:
+        lista: Un diccionario donde las claves son nombres completos de empleados y los valores son los puestos que ocupan.
+
+    Returns:
+        No retorna un valor directamente. Imprime el puesto si el empleado existe, o un mensaje de que no trabaja en la empresa si no se encuentra.
+
+    Se solicita al usuario que introduzca el nombre del empleado a buscar.
+    El nombre ingresado se normaliza con el método .title() para igualar el formato del diccionario.
+    Se verifica si el nombre existe como clave en el diccionario proporcionado.
+    Si el nombre está, se imprime el puesto correspondiente.
+    Si no está, se imprime un mensaje indicando que la persona no trabaja aquí.
+    """
+    nombre_buscado = input("Introduce el nombre del empleado a buscar: ").title()
+    if nombre_buscado in lista:
+        print(f'El puesto de {nombre_buscado} es {lista[nombre_buscado]}')
+    else:
+        print("La persona no trabaja aquí")
+
+encontrar_puesto(lista_empleados)
+
+#33. Crea una función lambda que sume elementos correspondientes de dos listas dadas.
+
+lista1 = [1,2,3,4]
+lista2 = [4,3,2,1]
+
+nueva_lista = lambda list1, list2: [elemento1 + elemento2 for elemento1, elemento2 in zip(list1, list2)]
+"""
+Esta función recibe dos listas de números y devuelve una nueva lista donde cada elemento es la suma de los elementos correspondientes en las dos listas originales.
+
+Args:
+    list1: Primera lista de números.
+    list2: Segunda lista de números.
+
+Returns:
+    Una lista con la suma de los elementos emparejados de list1 y list2.
+
+Se utiliza la función zip() para recorrer ambas listas a la vez, elemento por elemento.
+Por cada par de elementos (uno de cada lista), se suman y se agregan a la nueva lista.
+El resultado final es una lista con las sumas posición por posición.
+"""
+
+print(nueva_lista(lista1, lista2))
+
