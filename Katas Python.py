@@ -763,3 +763,307 @@ El resultado final es una lista con las sumas posición por posición.
 
 print(nueva_lista(lista1, lista2))
 
+#34. Crea la clase  Arbol , define un árbol genérico con un tronco y ramas como atributos. Los métodos disponibles son: crecer_tronco ,  nueva_rama ,  crecer_ramas ,  quitar_rama  e  info_arbol . El objetivo es implementar estos métodos para manipular la estructura del árbol.<br>
+#Código a seguir:
+#- Inicializar un árbol con un tronco de longitud 1 y una lista vacía de ramas.
+#- Implementar el método  crecer_tronco  para aumentar la longitud del tronco en una unidad.
+#- Implementar el método  nueva_rama  para agregar una nueva rama de longitud 1 a la lista de ramas.
+#- Implementar el método  crecer_ramas  para aumentar en una unidad la longitud de todas las ramas existentes.
+#- Implementar el método  quitar_rama  para eliminar una rama en una posición específica.
+#- Implementar el método info_arbol  para devolver información sobre la longitud del tronco, el número de ramas y las longitudes de las mismas.
+#Caso de uso:
+#- Crear un árbol.
+#- Hacer crecer el tronco del árbol una unidad.
+#- Añadir una nueva rama al árbol.
+#- Hacer crecer todas las ramas del árbol una unidad.
+#- Retirar la rama situada en la posición 2.
+#- Obtener información sobre el árbol.
+
+class Arbol:
+    """
+    Esta clase representa un árbol con un tronco y una serie de ramas.
+    Permite manipular la estructura del árbol mediante distintos métodos como hacer crecer el tronco, añadir nuevas ramas, hacer crecer las ramas, eliminar ramas y mostrar información del estado actual del árbol.
+
+    Atributos:
+        tronco (int): Longitud del tronco del árbol. Se inicializa en 1.
+        rama (list): Lista que contiene la longitud de cada rama del árbol. Se inicializa como lista vacía.
+    """
+
+    def __init__(self):
+        """
+        Inicializa un objeto de tipo Arbol con un tronco de longitud 1 y una lista vacía de ramas.
+        """
+        self.tronco = 1
+        self.rama = []
+
+    def crecer_tronco(self):
+        """
+        Incrementa la longitud del tronco en una unidad.
+        """
+        self.tronco += 1
+
+    def nueva_rama(self):
+        """
+        Agrega una nueva rama al árbol con una longitud inicial de 1.
+        """
+        self.rama.append(1)
+    
+    def crecer_ramas(self):
+        """
+        Aumenta en una unidad la longitud de todas las ramas existentes.
+        """
+        for i in range(len(self.rama)):
+            self.rama[i] += 1
+    
+    def quitar_rama(self, posicion):
+        """
+        Elimina una rama del árbol en la posición indicada.
+
+        Args:
+            posicion (int): Índice de la rama a eliminar (comienza desde 0).
+        """
+        self.rama.pop(posicion)
+    
+    def info_arbol(self):
+        """
+        Imprime por pantalla información detallada del árbol:
+        - Longitud del tronco
+        - Número de ramas
+        - Longitud de cada rama
+        """
+        print(f"La longitud del tronco es de: {self.tronco}")
+        print(f"El número de ramas es de: {len(self.rama)}")
+        for indice, elemento in enumerate(self.rama):
+            print(f"La rama numero {indice + 1} es de longitud: {elemento}")
+
+# Caso de uso
+arbol = Arbol()              # Se crea un árbol
+arbol.crecer_tronco()        # Se hace crecer el tronco una unidad
+arbol.nueva_rama()           # Se añade una nueva rama
+arbol.nueva_rama()           # Se añade otra rama
+arbol.nueva_rama()           # Se añade una tercera rama
+arbol.crecer_ramas()         # Todas las ramas crecen una unidad
+arbol.info_arbol()           # Se muestra la información actual del árbol
+arbol.quitar_rama(2)         # Se elimina la tercera rama (índice 2)
+arbol.info_arbol()           # Se muestra nuevamente la información del árbol
+
+#36. Crea la clase `UsuarioBanco`,representa a un usuario de un banco con su nombre, saldo y si tiene o no cuenta corriente. Proporciona métodos para realizar operaciones como retirar dinero, transferir dinero desde otro usuario y agregar dinero al saldo.<br>
+# Código a seguir:
+#    - Inicializar un usuario con su nombre, saldo y si tiene o no cuenta corriente mediante `True` y `False`.
+#    - Implementar el método  `retirar_dinero`  para retirar dinero del saldo del usuario. Lanzará un error en caso de no poder hacerse.
+#    - Implementar el método `transferir_dinero` para realizar una transferencia desde otro usuario al usuario actual. Lanzará un error en caso de no poder hacerse.
+#    - Implementar el método `agregar_dinero` para agregar dinero al saldo del usuario.<br><br>
+# Caso de uso:
+#    - Crear dos usuarios: "Alicia" con saldo inicial de 100 y "Bob" con saldo inicial de 50, ambos con cuenta corriente.
+#    - Agregar 20 unidades de saldo de "Bob".
+#    - Hacer una transferencia de 80 unidades desde "Bob" a "Alicia".
+#    - Retirar 50 unidades de saldo a "Alicia"
+
+class UsuarioBanco:
+    """
+    Esta clase representa a un usuario de un banco, con su nombre, saldo y si tiene o no una cuenta corriente. Permite realizar operaciones como retirar dinero, transferir dinero a otro usuario y agregar dinero al saldo.
+
+    Atributos:
+        nombre (str): Nombre del usuario.
+        saldo (float/int): Saldo actual en la cuenta del usuario.
+        cuenta_corriente (bool): Indica si el usuario tiene cuenta corriente (True o False).
+    """
+
+    def __init__(self, nombre, saldo, cuentaCorriente):
+        """
+        Inicializa una nueva instancia de UsuarioBanco con nombre, saldo y estado de cuenta corriente.
+
+        Args:
+            nombre (str): El nombre del usuario.
+            saldo (float/int): El saldo inicial del usuario.
+            cuentaCorriente (bool): Si tiene cuenta corriente (True o False).
+        """
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta_corriente = cuentaCorriente
+
+    def retirar_dinero(self, cantidad):
+        """
+        Retira una cantidad del saldo del usuario si tiene suficiente dinero.
+
+        Args:
+            cantidad (float/int): Monto a retirar.
+
+        Comprobamos si el saldo actual es suficiente. Si lo es, se descuenta del saldo.
+        Si no, se muestra un mensaje de error indicando saldo insuficiente.
+        """
+        if self.saldo - cantidad < 0:
+            print("ERROR: saldo insuficiente")
+        else:
+            self.saldo -= cantidad
+
+    def transferir_dinero(self, usuarioDestino, cantidad):
+        """
+        Transfiere una cantidad de dinero desde este usuario hacia otro.
+
+        Args:
+            usuarioDestino (UsuarioBanco): La instancia de usuario que recibirá el dinero.
+            cantidad (float/int): Monto a transferir.
+
+        Se verifica si el saldo actual es suficiente. Si lo es, se descuenta del saldo
+        del usuario actual y se suma al saldo del usuario destino.
+        Si no hay saldo suficiente, se muestra un mensaje de error.
+        """
+        if cantidad > self.saldo:
+            print("ERROR: saldo insuficiente")
+        else:
+            self.saldo -= cantidad
+            usuarioDestino.saldo += cantidad
+
+    def agregar_dinero(self, cantidad):
+        """
+        Agrega una cantidad de dinero al saldo del usuario.
+
+        Args:
+            cantidad (float/int): Monto a agregar.
+
+        Se suma el valor al saldo actual del usuario.
+        """
+        self.saldo += cantidad
+
+
+# Caso de uso
+alicia = UsuarioBanco("Alicia", 100, True)   # Se crea el usuario Alicia con saldo 100
+bob = UsuarioBanco("Bob", 50, True)          # Se crea el usuario Bob con saldo 50
+
+bob.agregar_dinero(20)                       # Bob recibe 20 → saldo ahora 70
+bob.transferir_dinero(alicia, 80)            # Da "error" indicando que no hay saldo suficiente.
+alicia.retirar_dinero(50)                    # Alicia retira 50 → nuevo saldo: 130
+
+
+#37. Crea una función llamada `procesar_texto` que procesa un texto según la opción especificada: `contar_palabras`, `reemplazar_palabras`, `eliminar_palabra`. Estas opciones son otras funciones que tenemos que definir primero y llamar dentro de la función  procesar_texto .<br>
+#    Código a seguir:
+#    - Crear una función `contar_palabras` para contar el número de veces que aparece cada palabra en el texto. Tiene que devolver un diccionario.
+#    - Crear una función `reemplazar_palabras` para remplazar una `palabra_original` del texto por una `palabra_nueva`. Tiene que devolver el texto con el remplazo de palabras.
+#    - Crear una función `eliminar_palabra` para eliminar una palabra del texto. Tiene que devolver el texto con la palabra eliminada.
+#    - Crear la función `procesar_texto` que tome un texto, una opción(entre "contar", "reemplazar", "eliminar") y un número de argumentos variable según la opción indicada.<br><br>
+#    Caso de uso:
+#    - Comprueba el funcionamiento completo de la función `procesar_texto`.
+
+
+texto = "El perro ladra y el gato maulla, pero el perro no deja de ladrar."
+
+def contar_palabras(text):
+    """
+    Esta función recibe un texto en forma de cadena y devuelve un diccionario que contiene cada palabra del texto como clave y la cantidad de veces que aparece como valor.
+
+    Args:
+        text (str): Texto a analizar. Puede contener mayúsculas y palabras repetidas.
+
+    Returns:
+        dict: Un diccionario donde las claves son las palabras en minúsculas y los valores son las veces que cada palabra aparece en el texto.
+
+    El texto se convierte todo a minúsculas para unificar la comparación de palabras.
+    Luego se divide en palabras usando el espacio como separador.
+    Se recorre la lista de palabras, y por cada palabra se incrementa su conteo en el diccionario. Si la palabra no existía previamente, se añade con valor 1.
+    """
+    texto = text.replace(",", "").replace(".", "")  # Eliminamos puntuación básica
+    palabras = texto.lower().split()
+    resultado = dict()
+    for palabra in palabras:
+        if palabra in resultado:
+            resultado[palabra] += 1
+        else:
+            resultado[palabra] = 1
+
+    return resultado
+
+
+def reemplazar_palabras(text, palabraVieja, palabraNueva):
+    """
+    Esta función reemplaza todas las apariciones de una palabra específica en un texto por otra palabra nueva, y devuelve el texto modificado.
+
+    Args:
+        text (str): El texto original donde se realizará el reemplazo.
+        palabraVieja (str): La palabra que se desea reemplazar.
+        palabraNueva (str): La palabra que se desea usar como reemplazo.
+
+    Returns:
+        str: El texto resultante después de realizar el reemplazo de palabras.
+
+    Se utiliza el método .replace() para sustituir todas las ocurrencias de 'palabraVieja' por 'palabraNueva' en el texto original.
+    """
+    nuevo_texto = text.replace(palabraVieja, palabraNueva)
+    return nuevo_texto
+
+
+def eliminar_palabra(text, palabra):
+    """
+    Esta función elimina todas las apariciones de una palabra específica en un texto y devuelve el texto modificado sin esa palabra.
+
+    Args:
+        text (str): El texto original del cual se desea eliminar una palabra.
+        palabra (str): La palabra que se desea eliminar del texto.
+
+    Returns:
+        str: El texto resultante después de eliminar todas las apariciones de la palabra.
+
+    Se utiliza el método .replace() para reemplazar todas las ocurrencias de la palabra por una cadena vacía, eliminándola del texto.
+    """
+    nuevo_texto = text.replace(palabra, "")
+    return nuevo_texto
+
+
+
+def procesar_texto(text, opcion, *args):
+    """
+    Esta función recibe un texto, una opción de procesamiento y un número variable de argumentos según la operación elegida. Dependiendo de la opción, llama a una función específica para contar palabras, reemplazar una palabra o eliminar una palabra del texto.
+
+    Args:
+        text (str): El texto original a procesar.
+        opcion (str): Puede ser "contar", "reemplazar" o "eliminar".
+        *args: Argumentos adicionales según la opción:
+            - Para "contar": no se requieren argumentos adicionales.
+            - Para "reemplazar": args[0] es la palabra a reemplazar, args[1] es la palabra nueva.
+            - Para "eliminar": args[0] es la palabra a eliminar.
+
+    Returns:
+        None. Imprime directamente el resultado por pantalla.
+
+    Se evalúa el valor de 'opcion'. Según el caso, se llama a la función correspondiente.
+    El resultado de la operación se muestra usando print().
+    """
+    if opcion.lower() == "contar":
+        print(contar_palabras(text))
+    elif opcion.lower() == "reemplazar":
+        print(reemplazar_palabras(text, args[0], args[1]))
+    else:
+        print(eliminar_palabra(text, args[0]))
+
+# Caso de uso
+procesar_texto(texto, "contar") # {'el': 3, 'perro': 2, 'ladra': 1, 'y': 1, 'gato': 1, 'maulla,': 1, 'pero': 1, 'no': 1, 'deja': 1, 'de': 1, 'ladrar.': 1}
+procesar_texto(texto, "reemplazar", "perro", "mono") # El mono ladra y el gato maulla, pero el mono no deja de ladrar.
+procesar_texto(texto, "eliminar", "perro") # El  ladra y el gato maulla, pero el  no deja de ladrar.
+
+#38. Genera un programa que nos diga si es de noche, de día o tarde según la hora proporcionada por el usuario.
+
+def momento_del_dia(hora):
+    """
+    Esta función recibe una hora del día (en formato entero o cadena convertible a entero)
+    y devuelve una cadena que indica el momento del día correspondiente: "noche", "día" o "tarde".
+
+    Args:
+        hora (int o str): La hora del día, expresada en formato de 24 horas (0 a 23).
+
+    Returns:
+        str: Una cadena indicando el momento del día:
+            - "noche" si la hora está entre las 0 y 5 o entre las 21 y 23
+            - "día" si la hora está entre las 6 y 11
+            - "tarde" si la hora está entre las 12 y 20
+
+    La hora se convierte primero a entero usando int(hora) para asegurar compatibilidad con entradas tipo string. Luego se evalúa en qué rango de horas cae para determinar y devolver el momento del día correspondiente.
+    """
+    if (0 <= int(hora) < 6) or (21 <= int(hora) <= 23):
+        return "noche"
+    elif 6 <= int(hora) < 12:
+        return "día"
+    else:
+        return "tarde"
+
+print(momento_del_dia(input("Ingresa una hora")))
+
