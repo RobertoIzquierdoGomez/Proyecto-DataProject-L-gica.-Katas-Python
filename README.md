@@ -1131,3 +1131,138 @@ procesar_texto(texto, "eliminar", "perro") # El  ladra y el gato maulla, pero el
 ```
 
 38. Genera un programa que nos diga si es de noche, de día o tarde según la hora proporcionada por el usuario.
+
+```PYTHON
+def momento_del_dia(hora):
+    """
+    Esta función recibe una hora del día (en formato entero o cadena convertible a entero)
+    y devuelve una cadena que indica el momento del día correspondiente: "noche", "día" o "tarde".
+
+    Args:
+        hora (int o str): La hora del día, expresada en formato de 24 horas (0 a 23).
+
+    Returns:
+        str: Una cadena indicando el momento del día:
+            - "noche" si la hora está entre las 0 y 5 o entre las 21 y 23
+            - "día" si la hora está entre las 6 y 11
+            - "tarde" si la hora está entre las 12 y 20
+
+    La hora se convierte primero a entero usando int(hora) para asegurar compatibilidad con entradas tipo string. Luego se evalúa en qué rango de horas cae para determinar y devolver el momento del día correspondiente.
+    """
+    if (0 <= int(hora) < 6) or (21 <= int(hora) <= 23):
+        return "noche"
+    elif 6 <= int(hora) < 12:
+        return "día"
+    else:
+        return "tarde"
+
+print(momento_del_dia(input("Ingresa una hora")))
+```
+
+39. Escribe un programa que determine qué calificación en texto tiene un alumno en base a su calificación numérica. Las reglas de calificación son:
+    - 0-69: insuficiente
+    - 70-79: bien
+    - 80-89: muy bien
+    - 90-100: excelente
+
+```PYTHON
+def calificacion(puntuacion):
+    """
+    Esta función recibe una puntuación numérica y muestra por pantalla una calificación cualitativa según el rango en el que se encuentre.
+
+    Args:
+        puntuacion (int o float): Valor numérico que representa la puntuación obtenida.
+
+    Returns:
+        None. La función imprime directamente una calificación textual según la puntuación:
+            - "Insuficiente" si la puntuación está entre 0 y 69 (inclusive)
+            - "Bien" si está entre 70 y 79 (inclusive)
+            - "Muy bien" si está entre 80 y 89 (inclusive)
+            - "Excelente" si es 90 o superior
+
+    La función evalúa la puntuación mediante condicionales encadenadas (if-elif-else) y determina la calificación correspondiente a cada rango. El resultado se muestra usando la función print().
+    """
+    if puntuacion >= 0 and puntuacion <= 69:
+        print("Insuficiente")
+    elif puntuacion >= 70 and puntuacion <= 79:
+        print("Bien")
+    elif puntuacion >= 80 and puntuacion <= 89:
+        print("Muy bien")
+    else:
+        print("Excelente")
+```
+
+40. Escribe una función que tome dos parámetros: `figura` (una cadena que puede ser `"rectangulo"`, `"circulo"` o `"triangulo"`) y `datos` (una tupla con los datos necesarios para calcular el área de la figura).
+
+```PYTHON
+parametros = (2,3)
+
+def calcular_area(figura, datos):
+    """
+    Esta función calcula y muestra por pantalla el área de una figura geométrica
+    según el tipo de figura indicado y los datos proporcionados.
+
+    Args:
+        figura (str): El nombre de la figura. Puede ser "rectangulo", "circulo" o cualquier otro valor, que será interpretado como "triángulo".
+        datos (tuple): Una tupla de valores numéricos necesarios para calcular el área:
+            - Para "rectangulo": se esperan dos valores (base y altura).
+            - Para "circulo": se espera un valor (radio).
+            - Para "triángulo": se esperan dos valores (base y altura).
+
+    Returns:
+        None. La función imprime directamente el resultado del área correspondiente.
+
+    La función convierte el nombre de la figura a minúsculas para facilitar la comparación.
+    Luego evalúa el tipo de figura mediante condicionales:
+        - Si es "rectangulo", calcula base * altura.
+        - Si es "circulo", calcula π * radio², utilizando 3.14 como valor de π.
+        - En cualquier otro caso, se calcula como triángulo: (base * altura) / 2.
+    """
+    if figura.lower() == "rectangulo":
+        print(f"El área del rectángulo es {datos[0] * datos[1]}")
+    elif figura.lower() == "circulo":
+        print(f"El área del círculo es {3.14 * (datos[0]**2)}")
+    else:
+        print(f"El área del triángulo es {(datos[0] * datos[1]) / 2}")
+
+calcular_area("triangulo", parametros)
+```
+
+41. En este ejercicio, se te pedirá que escribas un programa en Python que utilice condicionales para determinar el monto final de una compra en una tienda en línea, después de aplicar un descuento. El programa debe hacer lo siguiente:<br><br>
+    - Solicita al usuario que ingrese el precio original de un artículo.
+    - Pregunta al usuario si tiene un cupón de descuento (respuesta sí o no).
+    - Si el usuario responde que sí, solicita que ingrese el valor del cupón de descuento.
+    - Aplica el descuento al precio original del artículo, siempre y cuando el valor del cupón sea válido (es decir, mayor a cero). Por ejemplo, descuento de 15€. 
+    - Muestra el precio final de la compra, teniendo en cuenta el descuento aplicado o sin él.
+    - Recuerda utilizar estructuras de control de flujo como if, elif y else para llevar a cabo estas acciones en tu programa de Python.
+
+```PYTHON
+"""
+Este programa solicita al usuario el precio de un artículo y pregunta si dispone de un cupón de descuento. Si el usuario tiene un cupón, se le pide que introduzca el valor del descuento. El programa valida que el descuento sea mayor que cero y no superior al precio del artículo. Luego muestra el precio final con el descuento aplicado.
+
+Entradas:
+    - El precio original del artículo (como número entero).
+    - Una respuesta de sí/no indicando si el usuario tiene un cupón de descuento.
+    - En caso afirmativo, el valor del cupón de descuento (como número entero).
+
+Lógica:
+    - Si el usuario tiene un cupón, se verifica que el valor sea mayor que cero y no mayor que el precio del artículo.
+    - Si el descuento es válido, se aplica restando al precio original.
+    - Si no hay descuento o es inválido, se muestra el precio completo o un mensaje de error.
+
+Salidas:
+    - Se imprime por pantalla el precio final del artículo, con o sin descuento aplicado.
+    - Si el descuento no es válido, se imprime un mensaje de error.
+"""
+
+precioArticulo = int(input("Ingresa el precio del artículo: "))
+
+if input("¿Tienes un cupón de descuento? Responde con sí o no").lower() == "si":
+    descuento = int(input("Ingresa el valor del cupón de descuento: "))
+    if descuento <= precioArticulo and descuento > 0:
+        print(f"El precio total a pagar es de {precioArticulo - descuento}")
+    else:
+        print("ERROR descuento no válido")
+else:
+    print(f"El precio a pagar es {precioArticulo} al no tener descuento")
+```
